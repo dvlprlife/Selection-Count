@@ -1,0 +1,99 @@
+{
+  "name": "selection-count",
+  "displayName": "Selection Count",
+  "description": "Live selection counts (characters, words, letters, numbers, special characters) in the VS Code status bar.",
+  "version": "0.1.0",
+  "publisher": "dvlprlife",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "selection",
+    "count",
+    "characters",
+    "words",
+    "status bar",
+    "letters",
+    "numbers"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dvlprlife/Selection-Count"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      { "command": "selectionCount.toggleVisibility",  "title": "Toggle Visibility",  "category": "Selection Count" },
+      { "command": "selectionCount.configureDisplay",  "title": "Configure Display",  "category": "Selection Count" }
+    ],
+    "configuration": {
+      "title": "Selection Count",
+      "properties": {
+        "selectionCount.show.characters": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include character count in the status bar readout."
+        },
+        "selectionCount.show.words": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include word count in the status bar readout."
+        },
+        "selectionCount.show.letters": {
+          "type": "boolean",
+          "default": false,
+          "description": "Include letter count (Unicode letters) in the status bar readout."
+        },
+        "selectionCount.show.numbers": {
+          "type": "boolean",
+          "default": false,
+          "description": "Include digit count (Unicode digits) in the status bar readout."
+        },
+        "selectionCount.show.specialCharacters": {
+          "type": "boolean",
+          "default": false,
+          "description": "Include special-character count (everything that is not a letter, digit, or whitespace) in the status bar readout."
+        },
+        "selectionCount.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the Selection Count status bar item."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "npm run check-types && tsc --outDir dist && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "npm run clean && npm run check-types && node esbuild.js --production",
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\"",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test",
+    "pretest": "npm run compile && npm run lint"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.3.9",
+    "esbuild": "^0.20.0",
+    "eslint": "^8.56.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.3.0"
+  }
+}

@@ -66,6 +66,16 @@
           "type": "boolean",
           "default": true,
           "description": "Show the Selection Count status bar item."
+        },
+        "selectionCount.format": {
+          "type": "string",
+          "enum": ["text", "icons"],
+          "enumDescriptions": [
+            "Plain words: '42 chars, 8 words'",
+            "VS Code codicons with numbers: '$(symbol-string) 42  $(whole-word) 8'"
+          ],
+          "default": "text",
+          "description": "How counts are rendered in the status bar."
         }
       }
     }

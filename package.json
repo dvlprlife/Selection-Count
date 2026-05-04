@@ -28,6 +28,7 @@
     "onStartupFinished"
   ],
   "main": "./dist/extension.js",
+  "icon": "images/icon.png",
   "contributes": {
     "commands": [
       { "command": "selectionCount.toggleVisibility",  "title": "Toggle Visibility",  "category": "Selection Count" },

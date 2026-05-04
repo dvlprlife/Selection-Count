@@ -7,3 +7,4 @@ All notable changes to this project are documented here. The format follows [Kee
 ### Added
 
 - Initial project scaffold (package.json, TypeScript build, esbuild bundle, ESLint, vscode-test runner, command and configuration registrations as stubs).
+- Marketplace icon (images/icon.png) — yellow highlight slab inside cyan brackets, indigo numeral.

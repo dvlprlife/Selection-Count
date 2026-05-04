@@ -4,6 +4,16 @@ Live counts for the highlighted text in your Visual Studio Code editor — chara
 
 Selection Count puts a fast, configurable readout of what you've selected right in the status bar. Pick exactly which counts you want to see and they update as you change the selection.
 
+## Demo
+
+![Status bar in text format showing chars, words, letters, nums, and special characters](images/demo/status-bar-text.png)
+
+![Same readout rendered with VS Code codicons instead of words](images/demo/status-bar-icons.png)
+
+![Configure Display picker toggles which counts appear in the status bar](images/demo/configure-display.gif)
+
+![Settings UI showing the format dropdown with text and icons options](images/demo/selection-settings.png)
+
 ## Features
 
 - **Character count** — total characters in the selection (including whitespace).

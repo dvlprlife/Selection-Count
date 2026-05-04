@@ -10,3 +10,7 @@ All notable changes to this project are documented here. The format follows [Kee
 - Marketplace icon (images/icon.png) — yellow highlight slab inside cyan brackets, indigo numeral.
 - Live selection counts in the status bar (characters, words, letters, numbers, special characters), with per-category visibility controlled by `selectionCount.show.*` settings and rendering controlled by `selectionCount.format` (text or icons).
 - Toggle Visibility and Configure Display commands now do what they say (replacing v0.1.0 stubs).
+
+### Changed
+
+- README now shows a Demo section with screenshots of the status bar in text and icon formats, the Configure Display picker, and the format setting.

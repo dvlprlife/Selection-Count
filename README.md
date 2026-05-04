@@ -34,6 +34,7 @@ All commands are available through the Command Palette (search for "Selection Co
 | `selectionCount.show.numbers` | `false` | Include digit count (0–9) in the status bar readout. |
 | `selectionCount.show.specialCharacters` | `false` | Include special-character count in the status bar readout. |
 | `selectionCount.enabled` | `true` | Show the Selection Count status bar item at all. |
+| `selectionCount.format` | `"text"` | How counts are rendered in the status bar. `"text"` for full words, `"icons"` for VS Code codicons. |
 
 ## Requirements
 

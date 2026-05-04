@@ -8,8 +8,8 @@ Selection Count puts a fast, configurable readout of what you've selected right 
 
 - **Character count** — total characters in the selection (including whitespace).
 - **Word count** — whitespace-separated tokens in the selection.
-- **Letter count** — alphabetic characters only (`A–Z`, `a–z`).
-- **Number count** — digit characters only (`0–9`).
+- **Letter count** — any Unicode letter, including accented characters like `é` and non-Latin scripts.
+- **Number count** — any Unicode digit, including superscripts like `²` and non-Latin numerals.
 - **Special character count** — every character that is not a letter, digit, or whitespace.
 - **Configurable display** — pick which of the five counts appear in the status bar from `Selection Count` settings; the others stay hidden.
 - **Multi-selection aware** — counts aggregate across every active selection range.
@@ -30,10 +30,10 @@ All commands are available through the Command Palette (search for "Selection Co
 | --- | --- | --- |
 | `selectionCount.show.characters` | `true` | Include character count in the status bar readout. |
 | `selectionCount.show.words` | `true` | Include word count in the status bar readout. |
-| `selectionCount.show.letters` | `false` | Include letter count (A–Z) in the status bar readout. |
-| `selectionCount.show.numbers` | `false` | Include digit count (0–9) in the status bar readout. |
+| `selectionCount.show.letters` | `false` | Include letter count (Unicode letters) in the status bar readout. |
+| `selectionCount.show.numbers` | `false` | Include digit count (Unicode digits) in the status bar readout. |
 | `selectionCount.show.specialCharacters` | `false` | Include special-character count in the status bar readout. |
-| `selectionCount.enabled` | `true` | Show the Selection Count status bar item at all. |
+| `selectionCount.enabled` | `true` | Show the Selection Count status bar item. |
 | `selectionCount.format` | `"text"` | How counts are rendered in the status bar. `"text"` for full words, `"icons"` for VS Code codicons. |
 
 ## Requirements

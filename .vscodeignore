@@ -20,4 +20,5 @@ agents/**
 .claude/**
 .vscode-test.mjs
 images/blog/**
+images/concepts/**
 posts/**

@@ -54,4 +54,46 @@ suite('counters', () => {
     assert.strictEqual(sum(countNumbers), 2);
     assert.strictEqual(sum(countSpecial), 2);
   });
+
+  test('supplementary-plane character (emoji) counts as 1 character, not 2 code units', () => {
+    assert.strictEqual(countCharacters('🎉'), 1);
+    assert.strictEqual(countCharacters('🎉🎉🎉'), 3);
+  });
+
+  test('supplementary-plane letter (mathematical script) is 1 character and 1 letter', () => {
+    const input = '𝓗𝓮𝓵𝓵𝓸';
+    assert.strictEqual(countCharacters(input), 5);
+    assert.strictEqual(countLetters(input), 5);
+    assert.strictEqual(countNumbers(input), 0);
+    assert.strictEqual(countSpecial(input), 0);
+  });
+
+  test('supplementary-plane digit (mathematical double-struck) is 1 character and 1 number', () => {
+    const input = '𝟙𝟚𝟛';
+    assert.strictEqual(countCharacters(input), 3);
+    assert.strictEqual(countLetters(input), 0);
+    assert.strictEqual(countNumbers(input), 3);
+    assert.strictEqual(countSpecial(input), 0);
+  });
+
+  test('reconciliation: characters = letters + numbers + special + whitespace, including emoji', () => {
+    const input = 'Hi 🎉 42!';
+    const whitespace = (input.match(/\s/gu) ?? []).length;
+    const total =
+      countLetters(input) +
+      countNumbers(input) +
+      countSpecial(input) +
+      whitespace;
+    assert.strictEqual(countCharacters(input), total);
+    assert.strictEqual(countCharacters(input), 8);
+  });
+
+  test('combining marks: code-point counting, not grapheme clusters', () => {
+    const composed = 'é';
+    const decomposed = 'é';
+    assert.strictEqual(countCharacters(composed), 1);
+    assert.strictEqual(countCharacters(decomposed), 2);
+    assert.strictEqual(countLetters(composed), 1);
+    assert.strictEqual(countLetters(decomposed), 1);
+  });
 });

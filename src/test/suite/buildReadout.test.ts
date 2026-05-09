@@ -51,7 +51,7 @@ suite('buildReadout', () => {
   test('text mode all flags on renders all five in fixed order', () => {
     assert.strictEqual(
       buildReadout(counts(42, 8, 30, 3, 9), flagsAllOn, 'text'),
-      '42 chars, 8 words, 30 letters, 3 nums, 9 specials'
+      '42 chars, 8 words, 30 letters, 3 nums, 9 special'
     );
   });
 
@@ -62,7 +62,7 @@ suite('buildReadout', () => {
     );
     assert.strictEqual(
       buildReadout(counts(2, 2, 2, 2, 2), flagsAllOn, 'text'),
-      '2 chars, 2 words, 2 letters, 2 nums, 2 specials'
+      '2 chars, 2 words, 2 letters, 2 nums, 2 special'
     );
   });
 

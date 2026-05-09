@@ -29,7 +29,7 @@ const LABELS: Record<keyof SelectionCounts, { singular: string; plural: string }
   words: { singular: 'word', plural: 'words' },
   letters: { singular: 'letter', plural: 'letters' },
   numbers: { singular: 'num', plural: 'nums' },
-  special: { singular: 'special', plural: 'special' }
+  special: { singular: 'special', plural: 'specials' }
 };
 
 const CODICONS: Record<keyof SelectionCounts, string> = {

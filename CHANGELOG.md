@@ -4,6 +4,10 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+### Changed
+
+- Wording cleanup: README and settings descriptions now say "number" (Unicode `\p{N}`) instead of "digit", which better reflects what the counter actually matches (decimal digits, fractions like `½`, superscripts like `²`, Roman numerals, etc.). Pluralized the "special" label in the text-mode status bar readout so it reads "2 specials" instead of "2 special". (#24)
+
 ## [0.1.0] - 2026-05-04
 
 ### Added

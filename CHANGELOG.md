@@ -4,6 +4,8 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-05-09
+
 ### Changed
 
 - Wording cleanup: README and settings descriptions now say "number" (Unicode `\p{N}`) instead of "digit", which better reflects what the counter actually matches (decimal digits, fractions like `½`, superscripts like `²`, Roman numerals, etc.). (#24)

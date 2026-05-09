@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { resolveWriteTarget } from './configScope';
 import { createStatusBar } from './statusBar';
 
 type ShowKey =
@@ -30,7 +31,8 @@ export function activate(context: vscode.ExtensionContext): void {
   register('selectionCount.toggleVisibility', async () => {
     const config = vscode.workspace.getConfiguration('selectionCount');
     const current = config.get<boolean>('enabled', true);
-    await config.update('enabled', !current, vscode.ConfigurationTarget.Global);
+    const target = resolveWriteTarget(config.inspect<boolean>('enabled'));
+    await config.update('enabled', !current, target);
   });
 
   register('selectionCount.configureDisplay', async () => {
@@ -52,11 +54,8 @@ export function activate(context: vscode.ExtensionContext): void {
 
     const pickedKeys = new Set(picked.map(p => p.configKey));
     for (const cat of DISPLAY_CATEGORIES) {
-      await config.update(
-        cat.configKey,
-        pickedKeys.has(cat.configKey),
-        vscode.ConfigurationTarget.Global
-      );
+      const target = resolveWriteTarget(config.inspect<boolean>(cat.configKey));
+      await config.update(cat.configKey, pickedKeys.has(cat.configKey), target);
     }
   });
 }

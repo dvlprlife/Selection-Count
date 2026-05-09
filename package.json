@@ -55,12 +55,12 @@
         "selectionCount.show.numbers": {
           "type": "boolean",
           "default": false,
-          "description": "Include digit count (Unicode digits) in the status bar readout."
+          "description": "Include number count (Unicode numbers, including digits like 0-9, fractions like ½, and superscripts like ²) in the status bar readout."
         },
         "selectionCount.show.specialCharacters": {
           "type": "boolean",
           "default": false,
-          "description": "Include special-character count (everything that is not a letter, digit, or whitespace) in the status bar readout."
+          "description": "Include special-character count (everything that is not a letter, number, or whitespace) in the status bar readout."
         },
         "selectionCount.enabled": {
           "type": "boolean",

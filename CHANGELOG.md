@@ -7,6 +7,7 @@ All notable changes to this project are documented here. The format follows [Kee
 ### Changed
 
 - Wording cleanup: README and settings descriptions now say "number" (Unicode `\p{N}`) instead of "digit", which better reflects what the counter actually matches (decimal digits, fractions like `½`, superscripts like `²`, Roman numerals, etc.). (#24)
+- Character count now counts Unicode code points (so emoji count as 1, not 2). Reconciles with letter/number/special counts. (#23)
 
 ### Fixed
 

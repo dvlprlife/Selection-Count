@@ -53,7 +53,7 @@ These are non-negotiable:
 - **React to selection changes, not document changes.** Subscribe to `onDidChangeTextEditorSelection` (and `onDidChangeActiveTextEditor`). Do not subscribe to `onDidChangeTextDocument` — the selection event already fires on edits inside the active editor, and subscribing to both causes double work.
 - **Empty selection = hidden item.** When the selection is empty (cursor only), hide the status bar item rather than showing zeros. The whole feature is *selection* count.
 - **Definitions:**
-  - **Character** — every code unit in the selection, including whitespace and newlines (`selection.length` semantics — count grapheme-naive code units, matching what VS Code's built-in selection indicator shows).
+  - **Character** — every Unicode code point in the selection, including whitespace and newlines. Implementation: `[...text].length`. Counts emoji and other supplementary-plane characters as 1 (not 2 UTF-16 code units), so the readout reconciles: characters = letters + numbers + special + whitespace. Combining marks still count separately — a decomposed `é` (`e` + U+0301) is two characters.
   - **Word** — whitespace-separated non-empty tokens (`/\s+/` split, filter empties).
   - **Letter** — matches `/\p{L}/u` (Unicode letter category), not just `[A-Za-z]`. Update the README's "A–Z" wording if this ever needs to be ASCII-only.
   - **Number** — matches `/\p{N}/u` (Unicode number category).

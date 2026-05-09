@@ -8,6 +8,10 @@ All notable changes to this project are documented here. The format follows [Kee
 
 - Wording cleanup: README and settings descriptions now say "number" (Unicode `\p{N}`) instead of "digit", which better reflects what the counter actually matches (decimal digits, fractions like `½`, superscripts like `²`, Roman numerals, etc.). (#24)
 
+### Fixed
+
+- Toggle Visibility and Configure Display now write to the same configuration scope where the setting is currently overridden, instead of always writing to user (Global) settings. Previously, if a workspace had `selectionCount.*` overridden, the commands appeared to do nothing because the workspace value continued to win after a Global write. (#22)
+
 ## [0.1.0] - 2026-05-04
 
 ### Added

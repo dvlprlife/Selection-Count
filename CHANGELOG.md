@@ -8,12 +8,12 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ### Changed
 
-- Wording cleanup: README and settings descriptions now say "number" (Unicode `\p{N}`) instead of "digit", which better reflects what the counter actually matches (decimal digits, fractions like `½`, superscripts like `²`, Roman numerals, etc.). (#24)
-- Character count now counts Unicode code points (so emoji count as 1, not 2). Reconciles with letter/number/special counts. (#23)
+- Wording cleanup: README and settings descriptions now say "number" (Unicode `\p{N}`) instead of "digit", which better reflects what the counter actually matches (decimal digits, fractions like `½`, superscripts like `²`, Roman numerals, etc.). ([#24](https://github.com/dvlprlife/Selection-Count/pull/24))
+- Character count now counts Unicode code points (so emoji count as 1, not 2). Reconciles with letter/number/special counts. ([#23](https://github.com/dvlprlife/Selection-Count/pull/23))
 
 ### Fixed
 
-- Toggle Visibility and Configure Display now write to the same configuration scope where the setting is currently overridden, instead of always writing to user (Global) settings. Previously, if a workspace had `selectionCount.*` overridden, the commands appeared to do nothing because the workspace value continued to win after a Global write. (#22)
+- Toggle Visibility and Configure Display now write to the same configuration scope where the setting is currently overridden, instead of always writing to user (Global) settings. Previously, if a workspace had `selectionCount.*` overridden, the commands appeared to do nothing because the workspace value continued to win after a Global write. ([#22](https://github.com/dvlprlife/Selection-Count/pull/22))
 
 ## [0.1.0] - 2026-05-04
 

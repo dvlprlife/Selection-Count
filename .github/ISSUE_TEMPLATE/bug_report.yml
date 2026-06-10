@@ -1,0 +1,60 @@
+name: Bug report
+description: Something in Selection Count isn't working as documented.
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of the bug.
+      placeholder: The status bar shows ... but I expected ...
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Exact steps, including the text you selected if the bug is about a count being wrong. Paste the selection inside a code block so whitespace and special characters survive.
+      placeholder: |
+        1. Open a file containing ...
+        2. Select ...
+        3. Look at the status bar
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What you expected to see instead. The counter definitions (character, word, letter, number, special) are documented in the README's Features section.
+    validations:
+      required: true
+  - type: textarea
+    id: settings
+    attributes:
+      label: Relevant settings
+      description: Any non-default `selectionCount.*` settings (e.g. `selectionCount.format`, `selectionCount.show.*`), and whether they are set at the User or Workspace scope.
+      placeholder: '"selectionCount.format": "icons" (Workspace)'
+    validations:
+      required: false
+  - type: input
+    id: extension-version
+    attributes:
+      label: Extension version
+      placeholder: 0.1.1
+    validations:
+      required: true
+  - type: input
+    id: vscode-version
+    attributes:
+      label: VS Code version
+      description: From Help > About (1.85.0 or later is required).
+      placeholder: 1.85.0
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: Windows 11 / macOS 14 / Ubuntu 24.04
+    validations:
+      required: false

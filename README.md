@@ -54,6 +54,10 @@ All commands are available through the Command Palette (search for "Selection Co
 
 Please file issues and feature requests on [GitHub](https://github.com/dvlprlife/Selection-Count).
 
+## Contributing
+
+Contributions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for setup, the build/test commands, and the issue-first workflow.
+
 ## License
 
 MIT

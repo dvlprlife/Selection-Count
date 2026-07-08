@@ -40,6 +40,14 @@ const CODICONS: Record<keyof SelectionCounts, string> = {
   special: '$(symbol-operator)'
 };
 
+const TOOLTIP_LABELS: Record<keyof SelectionCounts, string> = {
+  characters: 'Characters',
+  words: 'Words',
+  letters: 'Letters',
+  numbers: 'Numbers',
+  special: 'Special'
+};
+
 export function buildReadout(
   counts: SelectionCounts,
   flags: DisplayFlags,
@@ -59,4 +67,14 @@ export function buildReadout(
       return `${value} ${value === 1 ? singular : plural}`;
     })
     .join(', ');
+}
+
+export function buildTooltip(counts: SelectionCounts, flags: DisplayFlags): string {
+  const lines = ['Selection Count'];
+  for (const key of ORDER) {
+    if (flags[key]) {
+      lines.push(`${TOOLTIP_LABELS[key]}: ${counts[key]}`);
+    }
+  }
+  return lines.join('\n');
 }

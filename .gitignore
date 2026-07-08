@@ -3,6 +3,7 @@ dist/
 out/
 *.vsix
 .vscode-test/
+src/test/fixtures/workspace/.vscode/
 .claude/
 .DS_Store
 CONTEXT.md

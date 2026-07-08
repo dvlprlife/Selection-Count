@@ -34,5 +34,21 @@ suite('Selection Count Extension', () => {
       assert.strictEqual(after.get<boolean>('enabled'), false);
       assert.strictEqual(after.inspect<boolean>('enabled')?.globalValue, false);
     });
+
+    test('writes to Workspace scope when the setting is overridden there', async () => {
+      const config = vscode.workspace.getConfiguration('selectionCount');
+      await config.update('enabled', true, vscode.ConfigurationTarget.Workspace);
+
+      try {
+        await vscode.commands.executeCommand('selectionCount.toggleVisibility');
+
+        const after = vscode.workspace.getConfiguration('selectionCount');
+        assert.strictEqual(after.inspect<boolean>('enabled')?.workspaceValue, false);
+      } finally {
+        await vscode.workspace
+          .getConfiguration('selectionCount')
+          .update('enabled', undefined, vscode.ConfigurationTarget.Workspace);
+      }
+    });
   });
 });

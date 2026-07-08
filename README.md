@@ -34,6 +34,21 @@ Selection Count puts a fast, configurable readout of what you've selected right 
 
 All commands are available through the Command Palette (search for "Selection Count").
 
+## Keybindings
+
+Selection Count ships **no default keybindings**. Both commands apply globally rather than in a specific editor context, so any default shortcut would risk colliding with a VS Code built-in or another extension.
+
+To bind them yourself, open the Command Palette → **Preferences: Open Keyboard Shortcuts (JSON)** and add an entry for each command ID:
+
+```json
+[
+  { "key": "ctrl+k ctrl+v", "command": "selectionCount.toggleVisibility" },
+  { "key": "ctrl+k ctrl+d", "command": "selectionCount.configureDisplay" }
+]
+```
+
+Swap in whatever combination is free on your keymap — VS Code's Keyboard Shortcuts editor flags conflicts as you type.
+
 ## Settings
 
 | Setting | Default | Description |

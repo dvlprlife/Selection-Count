@@ -38,17 +38,6 @@ suite('resolveWriteTarget', () => {
     );
   });
 
-  test('all three set → WorkspaceFolder (most specific wins)', () => {
-    assert.strictEqual(
-      resolveWriteTarget<boolean>({
-        globalValue: true,
-        workspaceValue: false,
-        workspaceFolderValue: true
-      }),
-      vscode.ConfigurationTarget.WorkspaceFolder
-    );
-  });
-
   test('explicit false at Workspace counts as set, not unset', () => {
     assert.strictEqual(
       resolveWriteTarget<boolean>({ workspaceValue: false }),

@@ -40,36 +40,43 @@
         "selectionCount.show.characters": {
           "type": "boolean",
           "default": true,
+          "scope": "window",
           "description": "Include character count in the status bar readout."
         },
         "selectionCount.show.words": {
           "type": "boolean",
           "default": true,
+          "scope": "window",
           "description": "Include word count in the status bar readout."
         },
         "selectionCount.show.letters": {
           "type": "boolean",
           "default": false,
+          "scope": "window",
           "description": "Include letter count (Unicode letters) in the status bar readout."
         },
         "selectionCount.show.numbers": {
           "type": "boolean",
           "default": false,
+          "scope": "window",
           "description": "Include number count (Unicode numbers, including digits like 0-9, fractions like ½, and superscripts like ²) in the status bar readout."
         },
         "selectionCount.show.specialCharacters": {
           "type": "boolean",
           "default": false,
+          "scope": "window",
           "description": "Include special-character count (everything that is not a letter, number, or whitespace) in the status bar readout."
         },
         "selectionCount.enabled": {
           "type": "boolean",
           "default": true,
+          "scope": "window",
           "description": "Show the Selection Count status bar item."
         },
         "selectionCount.format": {
           "type": "string",
           "enum": ["text", "icons"],
+          "scope": "window",
           "enumDescriptions": [
             "Plain words: '42 chars, 8 words'",
             "VS Code codicons with numbers: '$(symbol-string) 42  $(whole-word) 8'"

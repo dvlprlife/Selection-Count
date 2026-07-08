@@ -7,6 +7,7 @@ All notable changes to this project are documented here. The format follows [Kee
 ### Fixed
 
 - Configure Display no longer writes settings you didn't change. Previously, confirming the picker rewrote all five `selectionCount.show.*` keys into your `settings.json` — even on a no-op — freezing the current defaults and firing redundant status bar refreshes. It now writes only the categories you actually toggled.
+- The status bar item now identifies itself as "Selection Count" in the status bar's right-click hide/show menu, instead of falling back to the extension identifier.
 
 ## [0.1.1] - 2026-05-09
 

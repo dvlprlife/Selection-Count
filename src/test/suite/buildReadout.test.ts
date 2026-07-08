@@ -2,7 +2,8 @@ import * as assert from 'assert';
 import {
   DisplayFlags,
   SelectionCounts,
-  buildReadout
+  buildReadout,
+  buildTooltip
 } from '../../buildReadout';
 
 const counts = (c = 0, w = 0, l = 0, n = 0, s = 0): SelectionCounts => ({
@@ -107,6 +108,46 @@ suite('buildReadout', () => {
     assert.strictEqual(
       buildReadout(counts(0, 0), flagsDefault, 'icons'),
       '$(symbol-string) 0  $(whole-word) 0'
+    );
+  });
+});
+
+suite('buildTooltip', () => {
+  test('all flags off renders header only', () => {
+    assert.strictEqual(buildTooltip(counts(42, 8), flagsAllOff), 'Selection Count');
+  });
+
+  test('default flags render Characters and Words under the header', () => {
+    assert.strictEqual(
+      buildTooltip(counts(42, 8), flagsDefault),
+      'Selection Count\nCharacters: 42\nWords: 8'
+    );
+  });
+
+  test('all flags on render all five in fixed order', () => {
+    assert.strictEqual(
+      buildTooltip(counts(42, 8, 30, 3, 9), flagsAllOn),
+      'Selection Count\nCharacters: 42\nWords: 8\nLetters: 30\nNumbers: 3\nSpecial: 9'
+    );
+  });
+
+  test('labels are fixed regardless of singular vs plural counts', () => {
+    assert.strictEqual(
+      buildTooltip(counts(1, 1, 1, 1, 1), flagsAllOn),
+      'Selection Count\nCharacters: 1\nWords: 1\nLetters: 1\nNumbers: 1\nSpecial: 1'
+    );
+  });
+
+  test('only enabled categories appear', () => {
+    assert.strictEqual(
+      buildTooltip(counts(42, 8, 30, 3, 9), {
+        characters: false,
+        words: false,
+        letters: true,
+        numbers: false,
+        special: true
+      }),
+      'Selection Count\nLetters: 30\nSpecial: 9'
     );
   });
 });

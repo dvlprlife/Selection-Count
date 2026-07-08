@@ -1,24 +1,22 @@
 import * as vscode from 'vscode';
 import { resolveWriteTarget } from './configScope';
+import { ShowKey, planDisplayUpdates } from './configureDisplayPlan';
 import { createStatusBar } from './statusBar';
-
-type ShowKey =
-  | 'show.characters'
-  | 'show.words'
-  | 'show.letters'
-  | 'show.numbers'
-  | 'show.specialCharacters';
 
 interface ConfigureItem extends vscode.QuickPickItem {
   configKey: ShowKey;
 }
 
-const DISPLAY_CATEGORIES: ReadonlyArray<{ label: string; configKey: ShowKey }> = [
-  { label: 'Characters', configKey: 'show.characters' },
-  { label: 'Words', configKey: 'show.words' },
-  { label: 'Letters', configKey: 'show.letters' },
-  { label: 'Numbers', configKey: 'show.numbers' },
-  { label: 'Special characters', configKey: 'show.specialCharacters' }
+const DISPLAY_CATEGORIES: ReadonlyArray<{
+  label: string;
+  configKey: ShowKey;
+  default: boolean;
+}> = [
+  { label: 'Characters', configKey: 'show.characters', default: true },
+  { label: 'Words', configKey: 'show.words', default: true },
+  { label: 'Letters', configKey: 'show.letters', default: false },
+  { label: 'Numbers', configKey: 'show.numbers', default: false },
+  { label: 'Special characters', configKey: 'show.specialCharacters', default: false }
 ];
 
 export function activate(context: vscode.ExtensionContext): void {
@@ -37,9 +35,13 @@ export function activate(context: vscode.ExtensionContext): void {
 
   register('selectionCount.configureDisplay', async () => {
     const config = vscode.workspace.getConfiguration('selectionCount');
-    const items: ConfigureItem[] = DISPLAY_CATEGORIES.map(cat => ({
+    const current = DISPLAY_CATEGORIES.map(cat => ({
+      key: cat.configKey,
+      value: config.get<boolean>(cat.configKey, cat.default)
+    }));
+    const items: ConfigureItem[] = DISPLAY_CATEGORIES.map((cat, i) => ({
       label: cat.label,
-      picked: config.get<boolean>(cat.configKey, false),
+      picked: current[i].value,
       configKey: cat.configKey
     }));
 
@@ -53,9 +55,9 @@ export function activate(context: vscode.ExtensionContext): void {
     }
 
     const pickedKeys = new Set(picked.map(p => p.configKey));
-    for (const cat of DISPLAY_CATEGORIES) {
-      const target = resolveWriteTarget(config.inspect<boolean>(cat.configKey));
-      await config.update(cat.configKey, pickedKeys.has(cat.configKey), target);
+    for (const { key, value } of planDisplayUpdates(current, pickedKeys)) {
+      const target = resolveWriteTarget(config.inspect<boolean>(key));
+      await config.update(key, value, target);
     }
   });
 }

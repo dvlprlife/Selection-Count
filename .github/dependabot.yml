@@ -1,0 +1,71 @@
+# Dependabot keeps npm dependencies and GitHub Actions current via weekly,
+# grouped PRs. These PRs are a human-reviewed stream OUTSIDE the agent label
+# state machine (see agents/WORKFLOW.md): they carry only `dependencies`,
+# never `agent` / `status:*`, and they run through the same build.yml CI as
+# any other PR.
+#
+# The catch-all groups set `update-types: [minor, patch]` deliberately. A group
+# with only `patterns: ["*"]` does not leave majors alone, it sweeps them in,
+# so one PR arrives carrying several unrelated breaking changes at once, and a
+# single incompatible major (e.g. TypeScript 6 -> 7) blocks every routine bump
+# riding along with it. Restricting the groups keeps routine minor+patch noise
+# batched while each major still opens its own reviewable PR.
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    labels:
+      - "dependencies"
+    ignore:
+      # @types/vscode is pinned to engines.vscode on purpose: it declares the
+      # oldest VS Code the extension supports, and typing against a newer API
+      # surface would let code compile that fails at runtime on that baseline.
+      # `vsce package` enforces this and hard-fails the packaging smoke test
+      # ("@types/vscode ^X greater than engines.vscode ^1.85.0"). Raise it only
+      # in lockstep with engines.vscode, by hand.
+      - dependency-name: "@types/vscode"
+      # typescript-eslint does not accept TypeScript 7 as a peer, so a TS major
+      # fails `npm ci` with ERESOLVE before anything else runs. Revisit when
+      # typescript-eslint supports TS 7.
+      - dependency-name: "typescript"
+        update-types:
+          - "version-update:semver-major"
+    groups:
+      dev-dependencies:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
+        patterns:
+          - "*"
+      production-dependencies:
+        dependency-type: "production"
+        update-types:
+          - "minor"
+          - "patch"
+        patterns:
+          - "*"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+    labels:
+      - "dependencies"
+    groups:
+      github-actions:
+        update-types:
+          - "minor"
+          - "patch"
+        patterns:
+          - "*"
